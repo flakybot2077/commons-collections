@@ -595,6 +595,7 @@
               <exclude>**/TestUtils.java</exclude>
               <exclude>**/Abstract*.java</exclude>
               <exclude>**/BulkTest.java</exclude>
+              <exclude>docs/**</exclude>
             </excludes>
         </configuration>
       </plugin>
