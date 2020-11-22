@@ -35,9 +35,9 @@ before_script:
   - nondextests=$(git diff --name-status $TRAVIS_COMMIT_RANGE | grep /test/ | sed -e 's;.*test/java/;;' -e 's/.java//' -e 's;/;.;g' | tr '\n' ',')
 
 script:
-  - mvn -V
-  # japicmp requires a package
-  - mvn -V jar:jar japicmp:cmp -P japicmp
+#  - mvn -V
+#  # japicmp requires a package
+#  - mvn -V jar:jar japicmp:cmp -P japicmp
   - mvn edu.illinois:nondex-maven-plugin:1.1.2:nondex -Drat.skip -Dtest=nondextests
 
 after_success:
