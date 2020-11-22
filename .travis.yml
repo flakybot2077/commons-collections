@@ -30,10 +30,15 @@ jdk:
   - openjdk14  
   - openjdk-ea
 
+before_script:
+  - if [[ -z $TRAVIS_COMMIT_RANGE ]]; then TRAVIS_COMMIT_RANGE=$(git rev-parse master)...$(git rev-parse HEAD); fi
+  - nondextests=$(git diff --name-status $TRAVIS_COMMIT_RANGE | grep /test/ | sed -e 's;.*test/java/;;' -e 's/.java//' -e 's;/;.;g' | tr '\n' ',')
+
 script:
   - mvn -V
   # japicmp requires a package
   - mvn -V jar:jar japicmp:cmp -P japicmp
+  - mvn edu.illinois:nondex-maven-plugin:1.1.2:nondex -Drat.skip -Dtest=nondextests
 
 after_success:
   # jacoco will run in the main script. Include the profile to submit to coveralls.
