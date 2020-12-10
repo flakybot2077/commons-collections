@@ -30,11 +30,16 @@ jdk:
   - openjdk14  
   - openjdk-ea
 
+jobs:
+  include:
+  - name: NonDex
+  - jdk: openjdk8
+    script: sh nondex.sh
+
 script:
   - mvn -V
   # japicmp requires a package
   - mvn -V jar:jar japicmp:cmp -P japicmp
-  - sh nondex.sh
 
 after_success:
   # jacoco will run in the main script. Include the profile to submit to coveralls.
