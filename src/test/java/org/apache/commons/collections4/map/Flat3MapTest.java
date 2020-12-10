@@ -345,6 +345,7 @@ public class Flat3MapTest<K, V> extends AbstractIterableMapTest<K, V> {
     }
 
     private void putAndRemove(final Map<K, V> map) {
+        System.out.println("Test known flakyTest");
         map.put((K) "A", (V) "one");
         map.put((K) "B", (V) "two");
         map.put((K) "C", (V) "three");
